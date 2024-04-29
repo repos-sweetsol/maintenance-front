@@ -3,6 +3,9 @@ import axios from "axios"
 import styled from "styled-components"
 import "./App.css"
 
+
+const API_HOST_NAME = "https://sweetsol-api.onrender.com"
+
 const BASE_L = [ { name: "-" } ]
 
 const FIELDS = {
@@ -136,27 +139,27 @@ function App(){
 
     useEffect(
         () => {
-            axios.get( `http://localhost:8000/technicians` )
+            axios.get( `${API_HOST_NAME}/technicians` )
             .then( ( res ) => {
                 setTechs( () => ( [ { name: "-" } ].concat( res.data ) ) )
             })
 
-            axios.get( `http://localhost:8000/activities` )
+            axios.get( `${API_HOST_NAME}/activities` )
             .then( ( res ) => {
                 setActs( () => ( [ { name: "-" } ].concat( res.data ) ) )
             })
 
-            axios.get( `http://localhost:8000/areas` )
+            axios.get( `${API_HOST_NAME}/areas` )
             .then( ( res ) => {
                 setAreas( () => ( [ { name: "-" } ].concat( res.data ) ) )
             })
 
-            axios.get( `http://localhost:8000/failures` )
+            axios.get( `${API_HOST_NAME}/failures` )
             .then( ( res ) => {
                 setFails( () => ( [ { name: "-" } ].concat( res.data ) ) )
             })
 
-            axios.get( `http://localhost:8000/spares` )
+            axios.get( `${API_HOST_NAME}/spares` )
             .then( ( res ) => {
                 setSpares( () => ( [ { name: "-" } ].concat( res.data ) ) )
             })
@@ -190,7 +193,7 @@ function App(){
                 setSelArea( () => ( e.target.selectedIndex ) )
 
                 let a = areas[ e.target.selectedIndex ].name
-                axios.get( `http://localhost:8000/areas/${a}/machines` )
+                axios.get( `${API_HOST_NAME}/areas/${a}/machines` )
                 .then( ( res ) => {
                     setMachs( () => ( [ { name: "-" } ].concat( res.data ) ) )
                 })
@@ -201,7 +204,7 @@ function App(){
                 setSelMach( () => ( e.target.selectedIndex ) )
 
                 let m = machs[ e.target.selectedIndex ].name
-                axios.get( `http://localhost:8000/machines/${m}/systems` )
+                axios.get( `${API_HOST_NAME}/machines/${m}/systems` )
                 .then( ( res ) => {
                     setSyss( () => ( [ { name: "-" } ].concat( res.data ) ) )
                 })
@@ -212,7 +215,7 @@ function App(){
                 setSelSys( () => ( e.target.selectedIndex ) )
 
                 let s = syss[ e.target.selectedIndex ].name
-                axios.get( `http://localhost:8000/systems/${s}/subsystems` )
+                axios.get( `${API_HOST_NAME}/systems/${s}/subsystems` )
                 .then( ( res ) => {
                     setSubsyss( () => ( [ { name: "-" } ].concat( res.data ) ) )
                 })
@@ -309,7 +312,7 @@ function App(){
 
         form.spares = sps
 
-        axios.post( `http://localhost:8000/forms`, form )
+        axios.post( `${API_HOST_NAME}/forms`, form )
         .then( ( res ) => {})
     }
 
