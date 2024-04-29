@@ -1,0 +1,10 @@
+#root {
+  margin: 0 auto;
+  text-align: center;
+
+  @media screen and (max-width: 600px) {
+    max-width: 100vw;
+    height: fit-content;
+    flex-direction: column;
+  }
+}
