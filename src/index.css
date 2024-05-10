@@ -41,7 +41,7 @@ h1 {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid #213547;
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
@@ -49,6 +49,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  font-weight: bold;
 }
 button:hover {
   border-color: #646cff;
@@ -62,6 +63,7 @@ button:focus-visible {
   :root {
     color: #213547;
     background-color: #ffffff;
+    background-color: #d5eef7;
   }
   a:hover {
     color: #747bff;
@@ -73,4 +75,49 @@ button:focus-visible {
 
 * {
   box-sizing: border-box;
+  color: #213547;
+}
+
+select {
+  padding: 6px 5px;
+  border-radius: 7px;
+  border: 1px solid #213547;
+  background-color: #ffffff;
+}
+
+select:hover {
+  border-color: #646cff;
+}
+
+input {
+  padding: 6px 5px;
+  border-radius: 7px;
+  border: 1px solid #213547;
+  background-color: #ffffff;
+}
+
+input:hover {
+  border-color: #646cff;
+}
+
+textarea {
+  padding: 3px 7px;
+  border-radius: 10px;
+  border: 1px solid #213547;
+  background-color: #ffffff;
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+textarea:focus {
+  border: 1px solid #646cff;
+  outline: none;
+}
+
+.resp-img {
+  width: 180px;
+
+  @media screen and (max-width: 600px) {
+      width: 140px;
+      margin: 5px auto 10px auto;
+  }
 }

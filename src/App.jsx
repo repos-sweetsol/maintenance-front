@@ -2,9 +2,11 @@ import { useState, useEffect } from "react"
 import axios from "axios"
 import styled from "styled-components"
 import "./App.css"
+import SweetsolLogo from "./assets/sweetsol_logo.png"
 
 
 const API_HOST_NAME = "https://sweetsol-api.onrender.com"
+// const API_HOST_NAME = "http://localhost:8000"
 
 const BASE_L = [ { name: "-" } ]
 
@@ -104,6 +106,11 @@ const Main = styled.div`
         width: 100vw;
         margin-top: 25px;
     }
+`
+
+const Row = styled.div`
+    display: flex;
+    flex-direction: row;
 `
 
 function App(){
@@ -264,7 +271,7 @@ function App(){
             form.activity = acts[ selAct ].name
         }
 
-        if( date === "" || stime === "" || ftime === "" ){
+        if( selDate === "" || selStime === "" || selFtime === "" ){
             alert( "Por favor seleccione la fecha, hora de inicio y hora de finalizacion de la actividad..." )
             return
         }
@@ -316,8 +323,27 @@ function App(){
         .then( ( res ) => {})
     }
 
+    const handleClear = () => {
+        setSelTech( 0 )
+        setSelAct( 0 )
+        setSelDate( "" )
+        setSelStime( "" )
+        setSelFtime( "" )
+        setSelArea( 0 )
+        setSelMach( 0 )
+        setSelSys( 0 )
+        setSelSubsys( 0 )
+        setSelFail( 0 )
+        setDescr( "" )
+        setSelSpares( "" )
+    }
+
     return(
         <Main>
+            <img
+                className = "resp-img"
+                src = { SweetsolLogo }
+            />
             <UpperSection>
                 <UpperLeftSection>
                     <Field>
@@ -449,7 +475,7 @@ function App(){
             { acts[ selAct ].name === "Mantenimiento correctivo" &&
             <Field
                 style = {{
-                    width: "87%",
+                    width: "100%",
 
                     margin: "10px auto"
                 }}
@@ -500,7 +526,20 @@ function App(){
                                     flexDirection: "row"
                                 }}
                             >
-                                <SpareSelector
+                                <input
+                                    type = "text"
+
+                                    onChange = { ( e ) => setSelSpares( ( prev ) => {
+                                        let aux = prev.slice()
+                                        aux[ index ].sel = e.target.value;
+                                        return aux
+                                    })}
+
+                                    style = {{
+                                        width: "80%"
+                                    }}
+                                />
+                                {/* <SpareSelector
                                     spares = { spares }
 
                                     handleSelection = { ( val ) => setSelSpares( ( prev ) => {
@@ -510,7 +549,7 @@ function App(){
                                     })}
 
                                     getSpare = { () => selSpares[ index ].sel }
-                                />
+                                /> */}
                                 <input
                                     type = "number"
                                     id = "quant"
@@ -538,7 +577,8 @@ function App(){
                     style = {{
                         width: "100%",
 
-                        margin: "0 auto"
+                        margin: "0 auto",
+                        marginTop: "5px"
                     }}
                 >
                     <button
@@ -577,14 +617,33 @@ function App(){
                     }}
                 />
             </Field>
-            <button
-                onClick = { handleSubmit }
-
+            <div
                 style = {{
                     width: "100%",
-                    margin: "15px 0 0 0"
+
+                    margin: "15px 0",
+
+                    display: "flex",
+                    justifyContent: "space-between"
                 }}
-            >Enviar</button>
+            >
+                <button
+                    onClick = { () => handleClear() }
+
+                    style = {{
+                        width: "5%",
+
+                        padding: "0"
+                    }}
+                >X</button>
+                <button
+                    onClick = { handleSubmit }
+
+                    style = {{
+                        width: "94%",
+                    }}
+                >Enviar</button>
+            </div>
         </Main>
     )
 }
@@ -600,7 +659,7 @@ const Field = styled.div`
 const FieldTitle = styled.p`
     margin: 0;
 
-    font-size: medium;
+    font-size: large;
     font-weight: bold;
     text-align: left;
 `
