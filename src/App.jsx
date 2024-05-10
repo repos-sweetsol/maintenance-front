@@ -97,6 +97,7 @@ const UpperSection = styled.div`
 const Main = styled.div`
     width: 800px;
 
+    margin-top: 20px;
     padding: 0 40px;
 
     display: flex;
@@ -519,7 +520,8 @@ function App(){
                             height: "150px",
 
                             border: "1px solid black",
-                            borderRadius: "5px",
+                            borderRadius: "8px",
+                            backgroundColor: "#ffffff",
 
                             overflow: "auto"
                         }}
@@ -583,22 +585,24 @@ function App(){
                     style = {{
                         width: "100%",
 
-                        margin: "0 auto",
-                        marginTop: "5px"
+                        marginTop: "5px",
+
+                        display: "flex",
+                        justifyContent: "space-between"
                     }}
                 >
                     <button
                         onClick = { handlePopSpare }
 
                         style = {{
-                            "width": "50%"
+                            width: "49.5%"
                         }}
                     >Quitar repuesto</button>
                     <button
                         onClick = { handleAppendSpare }
 
                         style = {{
-                            "width": "50%"
+                            width: "49.5%"
                         }}
                     >Agregar repuesto</button>
                 </div>
