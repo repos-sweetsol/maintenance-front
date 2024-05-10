@@ -121,3 +121,17 @@ textarea:focus {
       margin: 5px auto 10px auto;
   }
 }
+
+.clear-btn {
+  width: 5%;
+  @media screen and (max-width: 600px) {
+      width: 10%;
+  }
+}
+
+.submit-btn {
+  width: 94%;
+  @media screen and (max-width: 600px) {
+      width: 89%;
+  }
+}

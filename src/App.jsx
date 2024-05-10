@@ -252,6 +252,21 @@ function App(){
         setSelSpares( ( prev ) => prev.concat( { sel: 0, quantity: 0 } ) )
     }
 
+    const handleClear = () => {
+        setSelTech( 0 )
+        setSelAct( 0 )
+        setSelDate( "" )
+        setSelStime( "" )
+        setSelFtime( "" )
+        setSelArea( 0 )
+        setSelMach( 0 )
+        setSelSys( 0 )
+        setSelSubsys( 0 )
+        setSelFail( 0 )
+        setDescr( "" )
+        setSelSpares( "" )
+    }
+
     const handleSubmit = ( e ) => {
         let form = {}
 
@@ -302,6 +317,7 @@ function App(){
             }
         }
 
+        form.failure = "-"
         if( acts[ selAct ].name === "Mantenimiento correctivo" ){
             if( selFail === 0 ){
                 alert( "Por favor seleccione un tipo de falla..." )
@@ -320,22 +336,12 @@ function App(){
         form.spares = sps
 
         axios.post( `${API_HOST_NAME}/forms`, form )
-        .then( ( res ) => {})
-    }
-
-    const handleClear = () => {
-        setSelTech( 0 )
-        setSelAct( 0 )
-        setSelDate( "" )
-        setSelStime( "" )
-        setSelFtime( "" )
-        setSelArea( 0 )
-        setSelMach( 0 )
-        setSelSys( 0 )
-        setSelSubsys( 0 )
-        setSelFail( 0 )
-        setDescr( "" )
-        setSelSpares( "" )
+        .then( ( res ) => {
+            if( res.status == 200 ){
+                handleClear()
+                alert( "Formulario enviado..." )
+            }
+        })
     }
 
     return(
@@ -628,20 +634,22 @@ function App(){
                 }}
             >
                 <button
+                    className = "clear-btn"
                     onClick = { () => handleClear() }
 
                     style = {{
-                        width: "5%",
+                        // width: "5%",
 
                         padding: "0"
                     }}
                 >X</button>
                 <button
+                    className = "submit-btn"
                     onClick = { handleSubmit }
 
-                    style = {{
-                        width: "94%",
-                    }}
+                    // style = {{
+                    //     width: "94%",
+                    // }}
                 >Enviar</button>
             </div>
         </Main>
