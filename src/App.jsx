@@ -250,7 +250,7 @@ function App(){
     }
 
     const handleAppendSpare = () => {
-        setSelSpares( ( prev ) => prev.concat( { sel: 0, quantity: 0 } ) )
+        setSelSpares( ( prev ) => prev.concat( { sel: 0, name: "", quantity: 0 } ) )
     }
 
     const handleClear = () => {
@@ -330,8 +330,11 @@ function App(){
         }
 
         let sps = []
+        // selSpares.forEach( ( e ) => {
+        //     sps.push( { name: spares[ e.sel ].name, quantity: e.quantity } )
+        // })
         selSpares.forEach( ( e ) => {
-            sps.push( { name: spares[ e.sel ].name, quantity: e.quantity } )
+            sps.push( { name: e.name, quantity: e.quantity } )
         })
 
         form.spares = sps
@@ -479,7 +482,9 @@ function App(){
                     </Field>
                 </UpperRightSection>
             </UpperSection>
-            { acts[ selAct ].name === "Mantenimiento correctivo" &&
+            { (
+                acts[ selAct ].name === "Mantenimiento correctivo"
+            ) &&
             <Field
                 style = {{
                     width: "100%",
@@ -502,8 +507,10 @@ function App(){
             { (
                 acts[ selAct ].name === "Mantenimiento correctivo" ||
                 acts[ selAct ].name === "Mantenimiento preventivo" ||
+                acts[ selAct ].name === "Alistamiento de equipos" ||
                 acts[ selAct ].name === "Proyectos y mejoras" ||
-                acts[ selAct ].name === "Reparaciones locativas"
+                acts[ selAct ].name === "Reparaciones locativas" ||
+                acts[ selAct ].name === "Calibración y ajustes mínimos"
             ) &&
             <>
                 <Field
@@ -537,9 +544,11 @@ function App(){
                                 <input
                                     type = "text"
 
+                                    value = { selSpares[ index ].name }
+
                                     onChange = { ( e ) => setSelSpares( ( prev ) => {
                                         let aux = prev.slice()
-                                        aux[ index ].sel = e.target.value;
+                                        aux[ index ].name = e.target.value;
                                         return aux
                                     })}
 
