@@ -5,7 +5,7 @@ import "./App.css"
 import SweetsolLogo from "./assets/sweetsol_logo.png"
 
 
-const API_HOST_NAME = "https://sweetsol-api.onrender.com"
+const API_HOST_NAME = "https://maintenance-back.onrender.com"
 // const API_HOST_NAME = "http://localhost:8000"
 
 const BASE_L = [ { name: "-" } ]
